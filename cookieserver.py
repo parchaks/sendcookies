@@ -1,16 +1,16 @@
 #!/bin/python
 
 from http import server 
-from http.cookies import SimpleCookie
 import socketserver
 
 port = 1234
-
+log_file= 'server.log'
 class MyHTTPRequestHandler(server.BaseHTTPRequestHandler):
     def do_GET(self):
-        cookies = SimpleCookie(self.headers.get('Cookie'))
-        with open('server.log','a') as f:
-            f.write(f"\n {self.headers['Host']} : {cookies} \n")
+        host = self.headers['Host']
+        cookies = self.headers['session']
+        with open(log_file,'a') as f:
+            f.write(f"\n {host}:{cookies} \n")
         self.send_response(200)
         self.end_headers()
 
